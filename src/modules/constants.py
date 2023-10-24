@@ -24,7 +24,7 @@ class Constants:
 
         self.CHECKPOINT_FREQ = 1000000
 
-        self.BETA = 9
+        self.LAMBDA = 9
 
 
         self.DOMAINS_FEAT_DICT = {'constitutional': ['fever'],

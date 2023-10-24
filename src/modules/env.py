@@ -72,8 +72,8 @@ class LupusEnv(Env):
             self.trajectory.append('Inconclusive diagnosis')
             
         else:
-            reward += -1/(constants.BETA*constants.FEATURE_SCORES[self.actions[action]])
-            self.total_reward += -1/(constants.BETA*constants.FEATURE_SCORES[self.actions[action]])
+            reward += -1/(constants.LAMBDA*constants.FEATURE_SCORES[self.actions[action]])
+            self.total_reward += -1/(constants.LAMBDA*constants.FEATURE_SCORES[self.actions[action]])
             terminated = False
             done = False
             y_actual = np.nan
