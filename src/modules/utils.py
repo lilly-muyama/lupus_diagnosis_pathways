@@ -19,6 +19,9 @@ tf.compat.v1.set_random_seed(constants.SEED)
 
 
 def get_pathway_features_score(pathway):
+    ''''
+    Computes the total feature score of a single pathway
+    '''
     if isinstance(pathway, str):
         pathway = ast.literal_eval(pathway)
     total_feature_cost = 0
@@ -27,7 +30,10 @@ def get_pathway_features_score(pathway):
         total_feature_cost += feat_score
     return total_feature_cost
 
-def get_total_pathway_score(test_df):
+def get_avg_pathway_score(test_df):
+    '''
+    Computes the average pathway score of a model
+    '''
     total_score = 0
     for i, row in test_df.iterrows():
         row_feature_score = get_pathway_features_score(row.trajectory)
@@ -178,7 +184,7 @@ def evaluate_dqn(dqn_model, X_test, y_test):
 def get_val_metrics(model, X_val, y_val):
     val_df = evaluate_dqn(model, X_val, y_val)
     acc, f1, roc_auc, = test(val_df['y_actual'], val_df['y_pred'])
-    pathway_score = get_total_pathway_score(val_df)
+    pathway_score = get_avg_pathway_score(val_df)
     wpahm_score = get_weighted_pahm_score([acc, pathway_score], [0.9, 0.1])
     min_path_length = val_df.episode_length.min()
     average_path_length = val_df.episode_length.mean()
