@@ -1,6 +1,7 @@
 class Constants:
     def init(self, args):
         self.SEED = args.seed
+        self.LAMBDA = args.lambda_constant
         self.CORRECT_DIAGNOSIS_REWARD = 1
         self.INCORRECT_DIAGNOSIS_REWARD = -1
         self.REPEATED_ACTION_REWARD = -1
@@ -23,9 +24,6 @@ class Constants:
         self.MAX_STEPS = self.FEATURE_NUM + 1
 
         self.CHECKPOINT_FREQ = 1000000
-
-        self.LAMBDA = 9
-
 
         self.DOMAINS_FEAT_DICT = {'constitutional': ['fever'],
         'hematologic': ['leukopenia', 'thrombocytopenia', 'auto_immune_hemolysis'],

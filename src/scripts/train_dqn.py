@@ -12,9 +12,8 @@ from multiprocessing import Process
 
 
 def run_dqn_model(model_type, seed, steps, lambda_num, per, folder_name):
-    dir_name = f'seed_{seed}_{steps}'
-    parent_dir = f'../../models/{model_type}/{folder_name}/lambda_{lambda_num}'
-    path = os.path.join(parent_dir, dir_name)
+    # dir_name = f'seed_{seed}_{steps}'
+    path = f'../../models/{folder_name}'
     os.mkdir(path)
   
     if model_type =='dqn':
@@ -63,7 +62,14 @@ if __name__ == '__main__':
     y_train = train_df.iloc[:, -1]
     X_train, y_train = np.array(X_train), np.array(y_train)   
 
-    folder_name =f'{args.train_set_name[len("train_set_"):]}'
+    if args.prioritized_replay == 'yes':
+        per_str= '_per'
+    else:
+        per_str=''
+
+
+    folder_name =f'{args.model_type}{per_str}_{args.train_set_name[len("train_set_"):]}_lambda_{args.lambda_constant}_{SEED}_{args.steps}' 
+    
 
     if args.steps >1000000:
         print(f'Training {args.model_type} model over {args.steps} steps. This may take a while')

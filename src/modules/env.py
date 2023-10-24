@@ -3,7 +3,6 @@ import random
 import copy
 import numpy as np
 from modules.constants import constants
-from modules import former_constants as constants
 import gym
 from gym import Env
 from gym.spaces import Discrete, Box
