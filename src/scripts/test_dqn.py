@@ -32,7 +32,6 @@ if __name__ == '__main__':
     dqn_acc, dqn_f1, dqn_roc_auc = utils.test(dqn_test_df['y_actual'], dqn_test_df['y_pred'])
     dqn_pathway_score = utils.get_avg_pathway_score(test_df)
     dqn_wpahm_score = utils.get_weighted_pahm_score([dqn_acc, dqn_pathway_score], [0.9, 0.1])
-    dqn_avg_length = utils.get_avg_length(dqn_test_df)
     print(f'RESULTS FOR {args.model_name}')
     print(f'acc:{dqn_acc}, pathway score:{dqn_pathway_score}, wpahm_score:{dqn_wpahm_score}, f1:{dqn_f1}, roc_auc:{dqn_roc_auc}, mean_episode_length: {dqn_test_df.episode_length.mean()}')
     
